@@ -3,19 +3,19 @@ import api from "../api/comment";
 
 function InputComment({ fetchComments }) {
     const [name, setName] = useState("");
-    const [comment, setComment] = useState("");
+    const [content, setContent] = useState("");
     const [nameError, setNameError] = useState("");
-    const [commentError, setCommentError] = useState("");
+    const [contentError, setContentError] = useState("");
 
     const handleSubmit = async (e) => {
         if (!name) setNameError("Username is required");
         else setNameError("");
-        if (!comment) setCommentError("Content is required");
-        else setCommentError("");
-        if (!name || !comment) return;
-        const { data } = await api.CreateComment(name, comment);
+        if (!content) setContentError("Content is required");
+        else setContentError("");
+        if (!name || !content) return;
+        await api.CreateComment({ name, content });
         setName("");
-        setComment("");
+        setContent("");
         fetchComments();
     }
 
@@ -31,12 +31,12 @@ function InputComment({ fetchComments }) {
                         value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div className="w-full">
-                    {commentError && <p className="ml-2 text-xs text-error">{commentError}</p>}
+                    {contentError && <p className="ml-2 text-xs text-error">{contentError}</p>}
                     <textarea
                         className={`textarea textarea-primary w-full text-base h-28
-                    ${commentError ? "textarea-error" : "textarea-primary"}`}
+                    ${contentError ? "textarea-error" : "textarea-primary"}`}
                         placeholder="Comment Content"
-                        value={comment} onChange={(e) => setComment(e.target.value)}>
+                        value={content} onChange={(e) => setContent(e.target.value)}>
                     </textarea>
                 </div>
                 <button className="btn btn-primary self-end"
