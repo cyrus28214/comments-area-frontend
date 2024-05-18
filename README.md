@@ -2,7 +2,7 @@
 
 X-Lab训练项目，评论区（前端）
 
-![UI](./UI.pdf)
+![UI](./UI.png)
 
 后端项目地址：[comments-area](https://github.com/cyrus28214/comments-area)
 
