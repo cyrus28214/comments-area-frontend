@@ -1,10 +1,11 @@
-import { useState } from 'react';
 import './App.css';
+import ThemeToggler from './components/ThemeToggler';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" data-theme="light">
       <button className="btn">Hello daisyUI</button>
+      <ThemeToggler />
     </div>
   );
 }
