@@ -1,6 +1,8 @@
 # comments-area-frontend
 
-X-Lab训练项目，评论区（前端）
+X-Lab训练项目，评论区（前端），使用Vite + React + DaisyUI。
+
+效果预览：
 
 ![UI](./UI.png)
 
