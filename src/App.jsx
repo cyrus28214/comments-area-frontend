@@ -14,12 +14,20 @@ function App() {
   }, []);
 
   const fetchComments = async () => {
+    setLoading(true);
     const result = await api.getComments(1, -1);
     setComments(result.data.comments);
     //复刻经典：
-    //此处卡顿，让客户给钱优化
+    //此处卡顿，好让客户给钱优化
     // setTimeout(() => setLoading(false), 2000);
     setTimeout(() => setLoading(false), 1500);
+  };
+
+  const deleteComment = async (id) => {
+    setLoading(true);
+    const result = await api.deleteComment(id);
+    fetchComments();
+    setLoading(false);
   };
 
   return (
@@ -27,9 +35,9 @@ function App() {
       <ThemeToggler />
       <div className="px-8">
         <div className="flex flex-col items-center w-full md:w-[40rem] inset-0 mx-auto">
-          <InputComment comments={comments} setComments={setComments} />
+          <InputComment fetchComments={fetchComments} />
           <div className="divider">Comments</div>
-          <CommentList comments={comments} loading={loading} />
+          <CommentList comments={comments} loading={loading} deleteComment={deleteComment} />
         </div>
       </div>
     </div>

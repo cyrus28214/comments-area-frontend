@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import api from "../api/comment";
-
-function CommentView({ comment, loading }) {
+function CommentView({ comment, loading, deleteComment }) {
     if (loading) {
-        return <div className="skeleton w-full h-24 rounded-md"></div>
+        return <div className="skeleton w-full h-28 rounded-md"></div>
     }
     return (
         <div className="flex text-base-content w-full items-center rounded-md hover:bg-base-200">
@@ -12,15 +9,24 @@ function CommentView({ comment, loading }) {
                 <h2 className="text-xl font-semibold">{comment.name}</h2>
                 <p className="test-">{comment.content}</p>
             </div>
-            <button className="btn btn-outline ml-auto mr-5">Delete</button>
+            <button className="btn btn-outline ml-auto mr-5" onClick={deleteComment}>Delete</button>
         </div>
     );
 }
 
-function CommentList({ fetchComments, comments, loading }) {
+function CommentList({ comments, loading, deleteComment }) {
+    if (loading) {
+        return (<div className="flex flex-col w-full space-y-4">
+            {Array(10).fill(null).map((_, i) => <CommentView key={i} loading={true} />)}
+        </div>)
+    }
     return (<div className="flex flex-col w-full space-y-4">
         {comments.map((comment) => (
-            <CommentView key={comment.id} comment={comment} loading={loading} />
+            <CommentView
+                key={comment.id}
+                comment={comment}
+                loading={loading}
+                deleteComment={() => deleteComment(comment.id)} />
         ))}
     </div>);
 }

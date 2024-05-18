@@ -14,7 +14,14 @@ async function CreateComment(comment) {
     return data;
 }
 
+async function deleteComment(id) {
+    const url = `${baseURL}/comment/delete?id=${id}`;
+    const { data } = await axios.post(url);
+    return data;
+}
+
 export default {
     getComments,
-    CreateComment
+    CreateComment,
+    deleteComment
 }
