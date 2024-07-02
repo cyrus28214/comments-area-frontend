@@ -1,13 +1,14 @@
+import React from "react";
 import { useState } from "react";
 import api from "../api/comment";
 
-function InputComment({ fetchComments }) {
+function InputComment({ fetchComments } : { fetchComments: () => void }): JSX.Element {
     const [name, setName] = useState("");
     const [content, setContent] = useState("");
     const [nameError, setNameError] = useState("");
     const [contentError, setContentError] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async () => {
         if (!name) setNameError("Username is required");
         else setNameError("");
         if (!content) setContentError("Content is required");

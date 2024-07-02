@@ -1,12 +1,14 @@
+import React from'react';
 import './App.css';
 import CommentList from './components/CommentList';
 import InputComment from './components/InputComment';
 import ThemeToggler from './components/ThemeToggler';
 import api from './api/comment';
 import { useState, useEffect } from 'react';
+import { Comment } from './types/types';
 
-function App() {
-  const [comments, setComments] = useState([]);
+function App(): JSX.Element {
+  const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,9 +22,9 @@ function App() {
     setLoading(false);
   };
 
-  const deleteComment = async (id) => {
+  const deleteComment = async (id: number) => {
     setLoading(true);
-    const result = await api.deleteComment(id);
+    const _result = await api.deleteComment(id);
     await fetchComments();
     setLoading(false);
   };

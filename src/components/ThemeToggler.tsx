@@ -1,6 +1,7 @@
+import React from "react";
 import { useState, useEffect } from "react";
 
-function ThemeToggler() {
+function ThemeToggler(): JSX.Element {
     const [theme, setTheme] = useState("light");
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
