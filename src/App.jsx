@@ -26,7 +26,7 @@ function App() {
   const deleteComment = async (id) => {
     setLoading(true);
     const result = await api.deleteComment(id);
-    fetchComments();
+    await fetchComments();
     setLoading(false);
   };
 
