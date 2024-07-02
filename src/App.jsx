@@ -17,10 +17,7 @@ function App() {
     setLoading(true);
     const result = await api.getComments(1, -1);
     setComments(result.data.comments);
-    //复刻经典：
-    //此处卡顿，好让客户给钱优化
-    // setTimeout(() => setLoading(false), 2000);
-    setTimeout(() => setLoading(false), 1500);
+    setLoading(false);
   };
 
   const deleteComment = async (id) => {
